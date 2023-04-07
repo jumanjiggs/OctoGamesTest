@@ -1,4 +1,5 @@
 using System.Linq;
+using CodeBase.Services;
 using Opsive.UltimateCharacterController.Traits;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,12 +14,10 @@ namespace CodeBase.Zombies
 
         private int m_LayerMask;
         private readonly Collider[] m_Hits = new Collider[1];
-        private const float Radius = 1f;
-        private const float distance = 1f;
         private bool m_IsActiveAttack;
 
         private void Awake() =>
-            m_LayerMask = 1 << LayerMask.NameToLayer("Character");
+            m_LayerMask = 1 << LayerMask.NameToLayer(Constants.Character);
 
         private void Update() =>
             MoveToDestination();
@@ -48,10 +47,9 @@ namespace CodeBase.Zombies
                 hit.transform.GetComponentInParent<CharacterHealth>().Damage(10);
             }
         }
-
         private bool Hit(out Collider hit)
         {
-            var hitsCount = Physics.OverlapSphereNonAlloc(GetStartPoint(), Radius, m_Hits, m_LayerMask);
+            var hitsCount = Physics.OverlapSphereNonAlloc(GetStartPoint(), Constants.Radius, m_Hits, m_LayerMask);
             hit = m_Hits.FirstOrDefault();
             return hitsCount > 0;
         }
@@ -59,7 +57,7 @@ namespace CodeBase.Zombies
         private Vector3 GetStartPoint()
         {
             var startPoint = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) +
-                             transform.forward * distance;
+                             transform.forward * Constants.Distance;
             return startPoint;
         }
 
