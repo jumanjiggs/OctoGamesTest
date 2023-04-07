@@ -1,7 +1,7 @@
 ﻿using Opsive.UltimateCharacterController.Traits;
 using UnityEngine;
 
-namespace CodeBase
+namespace CodeBase.Zombies
 {
     public class ZombieRespawner : Respawner
     {

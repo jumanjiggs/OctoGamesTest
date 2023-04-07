@@ -454,6 +454,7 @@ namespace Opsive.UltimateCharacterController.Traits
                     for (int j = 0; j < rigidbodies.Length; ++j) {
                         rigidbodies[j].AddForceAtPosition(force, position);
                     }
+                    Destroy(spawnedObject, 1f);
                 }
             }
 

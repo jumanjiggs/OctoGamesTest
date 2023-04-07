@@ -107,12 +107,11 @@ namespace Opsive.UltimateCharacterController.Traits
         protected override void OnRespawn()
         {
             base.OnRespawn();
-
             if (m_DeathLayer != 0) {
                 m_CharacterLocomotion.SetCollisionLayer(m_CharacterLayer);
             }
         }
-
+        
         /// <summary>
         /// The character has landed after falling a spcified amount. Determine if any damage should be taken.
         /// </summary>
