@@ -50,7 +50,7 @@ namespace Opsive.UltimateCharacterController.Traits
         [HideInInspector] [SerializeField] protected AudioClipSet m_RespawnAudioClipSet = new AudioClipSet();
         [Tooltip("Unity event invoked when the object respawns.")]
         [SerializeField] protected UnityEvent m_OnRespawnEvent;
-
+        
         public SpawnPositioningMode PositioningMode { get { return m_PositioningMode; } set { m_PositioningMode = value; } }
         public int Grouping { get { return m_Grouping; } set { m_Grouping = value; } }
         public float MinRespawnTime { get { return m_MinRespawnTime; } set { m_MinRespawnTime = value; } }
@@ -189,7 +189,6 @@ namespace Opsive.UltimateCharacterController.Traits
             }
 
             m_GameObject.SetActive(true);
-
             // Play any respawn audio.
             m_RespawnAudioClipSet.PlayAudioClip(m_GameObject);
 

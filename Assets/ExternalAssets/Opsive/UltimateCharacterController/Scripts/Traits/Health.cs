@@ -66,6 +66,7 @@ namespace Opsive.UltimateCharacterController.Traits
         [SerializeField] protected UnityFloatEvent m_OnHealEvent;
         [Tooltip("Unity event invoked when the object dies.")]
         [SerializeField] protected UnityVector3Vector3GameObjectEvent m_OnDeathEvent;
+        
 
         public GameObject Owner { get { return gameObject; } }
         public GameObject HitGameObject { get { return gameObject; } }
@@ -133,7 +134,7 @@ namespace Opsive.UltimateCharacterController.Traits
         private Dictionary<Collider, Hitbox> m_ColliderHitboxMap;
         private RaycastHit[] m_RaycastHits;
         private Utility.UnityEngineUtility.RaycastHitComparer m_RaycastHitComparer;
-
+        
         public float HealthValue { get { return (m_HealthAttribute != null ? m_HealthAttribute.Value : 0); } }
         public float ShieldValue { get { return (m_ShieldAttribute != null ? m_ShieldAttribute.Value : 0); } }
         public float Value { get { return HealthValue + ShieldValue; } }
@@ -488,14 +489,13 @@ namespace Opsive.UltimateCharacterController.Traits
             if (m_HealthAttribute != null) {
                 m_HealthAttribute.CancelAutoUpdate();
             }
-
+            
             // Notify those interested.
             EventHandler.ExecuteEvent<Vector3, Vector3, GameObject>(m_GameObject, "OnDeath", position, force, attacker);
             if (m_OnDeathEvent != null) {
                 m_OnDeathEvent.Invoke(position, force, attacker);
             }
         }
-
         /// <summary>
         /// Kills the object immediately.
         /// </summary>
